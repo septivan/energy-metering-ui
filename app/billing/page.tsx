@@ -31,20 +31,6 @@ export default function BillingPage() {
     };
   }, [pdfPreviewUrl]);
 
-  const fetchClients = async () => {
-    try {
-      const data = await getClients();
-      setClients(data);
-      if (data.length > 0) {
-        setSelectedClient(data[0].client_id);
-      }
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to fetch clients');
-    } finally {
-      setClientsLoading(false);
-    }
-  };
-
   const handleGenerateBilling = async () => {
     if (!selectedClient) {
       setError('Please select a client');
